@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Exercises</h2>
+<ul>
+    {% for e in excercisedetail_list %}
+        <li><a href="{% url 'info' id=e.id %}"> {{ e.user }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
