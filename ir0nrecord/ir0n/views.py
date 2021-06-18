@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import ExcerciseDate, ExcerciseDetail
 from django.urls import reverse_lazy
 from .forms import ExerciseForm
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
     return render(request, 'ir0n/index.html')
@@ -14,7 +14,7 @@ def excercisedetail(request):
 def excerciseinfo(request, id):
     detail=get_object_or_404(ExcerciseDetail, pk=id)
     return render(request, 'ir0n/excerciseinfo.html', {'detail' : detail})
-
+@login_required 
 def newExercise(request):
     form=ExerciseForm
 
@@ -27,3 +27,9 @@ def newExercise(request):
     else:
         form=ExerciseForm()
     return render(request, 'ir0n/newexercise.html', {'form': form})
+
+def loginmessage(request):
+        return render(request, 'ir0n/loginmessage.html')
+
+def logoutmessage(request):
+        return render(request, 'ir0n/logoutmessage.html')
